@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "lyricsky",
+  "version": "${version}",
+  "name": "Lyrics Sky",
+  "description": "Play music in-game and show synced lyrics floating in the sky and around you.",
+  "authors": ["you"],
+  "environment": "client",
+  "entrypoints": { "client": ["dev.lyricsky.LyricsSkyClient"] },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
