@@ -2,7 +2,6 @@ package dev.lyricsky.ui;
 
 import dev.lyricsky.*;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.Util;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -45,7 +44,7 @@ public class MainScreen extends Screen {
                 .bounds(cx - 155, 20, 100, 20).build());
         addRenderableWidget(Button.builder(Component.literal("YouTube"), b -> { tab = Tab.YOUTUBE; page = 0; rebuildWidgets(); })
                 .bounds(cx - 50, 20, 100, 20).build());
-        addRenderableWidget(Button.builder(Component.literal("Settings"), b -> minecraft.setScreen(new SettingsScreen(this)))
+        addRenderableWidget(Button.builder(Component.literal("Settings"), b -> minecraft.gui.setScreen(new SettingsScreen(this)))
                 .bounds(cx + 55, 20, 100, 20).build());
 
         int y = 48;
@@ -58,7 +57,7 @@ public class MainScreen extends Screen {
             if (YouTubeApi.userCode != null) {
                 addRenderableWidget(Button.builder(Component.literal("Copy code & open Google page"), b -> {
                     minecraft.keyboardHandler.setClipboard(YouTubeApi.userCode);
-                    Util.getPlatform().openUri(YouTubeApi.verifyUrl);
+                    Os.open(YouTubeApi.verifyUrl);
                 }).bounds(cx - 100, y + 28, 200, 20).build());
             }
         } else {
@@ -82,7 +81,7 @@ public class MainScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal(">"), b -> { if ((page + 1) * ROWS < list.size()) { page++; rebuildWidgets(); } })
                 .bounds(cx - 120, by, 30, 20).build());
         if (tab == Tab.LOCAL) {
-            addRenderableWidget(Button.builder(Component.literal("Open music folder"), b -> Util.getPlatform().openPath(musicDir()))
+            addRenderableWidget(Button.builder(Component.literal("Open music folder"), b -> Os.openPath(musicDir()))
                     .bounds(cx - 80, by, 235, 20).build());
         } else if (YouTubeApi.linked()) {
             addRenderableWidget(Button.builder(Component.literal("Refresh"), b -> YouTubeApi.refreshLibrary())

@@ -3,7 +3,6 @@ package dev.lyricsky;
 import dev.lyricsky.audio.ClockPlayback;
 import dev.lyricsky.audio.LocalPlayback;
 import dev.lyricsky.audio.Playback;
-import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 
 import java.nio.file.Path;
@@ -38,7 +37,7 @@ public final class PlayerController {
             playback = new ClockPlayback();
             status = "Opened in browser. Press your Play/Pause key the moment the video starts.";
             Minecraft.getInstance().execute(() ->
-                    Util.getPlatform().openUri("https://www.youtube.com/watch?v=" + t.source()));
+                    Os.open("https://www.youtube.com/watch?v=" + t.source()));
         } else {
             LocalPlayback p = new LocalPlayback(Path.of(t.source()));
             playback = p;

@@ -59,7 +59,7 @@ public final class LyricsHud {
     private static void extract(GuiGraphicsExtractor g, DeltaTracker dt) {
         Minecraft mc = Minecraft.getInstance();
         Config c = Config.get();
-        if (!c.enabled || mc.player == null || mc.options.hideGui) return;
+        if (!c.enabled || mc.player == null) return;
         Playback pb = PlayerController.playback;
         if (pb == null) return;
 
